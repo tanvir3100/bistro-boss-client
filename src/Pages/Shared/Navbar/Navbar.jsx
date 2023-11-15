@@ -1,11 +1,11 @@
-
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
     const navOption = <>
-        <li><a className="font-bold text-black lg:text-white">HOME</a></li>
-        <li><a className="font-bold text-black lg:text-white">CONTACT US</a></li>
+        <li><Link to='/' className="font-bold text-black lg:text-white">HOME</Link></li>
+        <li><Link to='/menu' className="font-bold text-black lg:text-white">OUR MENU</Link></li>
         <li><a className="font-bold text-black lg:text-white">DASHBOARD</a></li>
-        <li><a className="font-bold text-black lg:text-white">OUR MENU</a></li>
+        <li><a className="font-bold text-black lg:text-white">CONTACT US</a></li>
         <li><a className="font-bold text-black lg:text-white">OUR SHOP</a></li>
         <li><a className="font-bold text-black lg:text-white">SIGN OUT</a></li>
     </>
@@ -20,7 +20,7 @@ const Navbar = () => {
                         {navOption}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
+                <a className="btn btn-ghost normal-case text-xl flex justify-center items-center"><img className="w-[10%]" src="https://i.ibb.co/z6RN3WD/logo.png" alt="" /> Bistro Boss</a>
             </div>
             <div className="navbar-end w-full hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-2">

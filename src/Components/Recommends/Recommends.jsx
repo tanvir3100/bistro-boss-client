@@ -3,7 +3,7 @@ import SectionTitle from "../SectionTital/SectionTitle";
 
 
 const Recommends = () => {
-    const [salad, setSalad] = useState()
+    const [salad, setSalad] = useState([])
     useEffect(() => {
         fetch('menu.json')
             .then(res => res.json())
@@ -32,6 +32,7 @@ const Recommends = () => {
                     </div>)
                 }
             </div>
+            
         </div>
     );
 };
