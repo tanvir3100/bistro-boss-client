@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 const HelmetSection = ({ title }) => {
     return (
         <Helmet>
-            <title>Bistro |  {title}</title>
+            <title>{title}</title>
         </Helmet>
     );
 };

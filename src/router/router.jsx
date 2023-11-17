@@ -5,6 +5,10 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Menu from "../Pages/Menu/Menu";
 import OurShop from "../Pages/OurShop/OurShop";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import Login from '../Pages/Login/Login'
+import Register from '../Pages/Register/Register'
+
 
 
 const router = createBrowserRouter([
@@ -22,10 +26,22 @@ const router = createBrowserRouter([
             },
             {
                 path: '/ourShop/:category',
-                element: <OurShop/>
-            }
+                element: <OurShop />
+            },
+            {
+                path: '/contactUs',
+                element: <ContactUs />
+            },
         ]
     },
+    {
+        path: '/login',
+        element: <Login />
+    },
+    {
+        path: '/register',
+        element: <Register />
+    }
 ]);
 
 

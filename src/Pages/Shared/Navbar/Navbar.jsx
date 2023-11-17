@@ -1,13 +1,13 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const navOption = <>
         <li><Link to='/' className="font-bold text-black lg:text-white">HOME</Link></li>
         <li><Link to='/menu' className="font-bold text-black lg:text-white">OUR MENU</Link></li>
         <li><a className="font-bold text-black lg:text-white">DASHBOARD</a></li>
-        <li><a className="font-bold text-black lg:text-white">CONTACT US</a></li>
+        <li><Link to='/contactUs' className="font-bold text-black lg:text-white">CONTACT US</Link></li>
         <li><Link to='/ourShop/salad' className="font-bold text-black lg:text-white">OUR SHOP</Link></li>
-        <li><a className="font-bold text-black lg:text-white">SIGN OUT</a></li>
+        <li><Link to='/login' className="font-bold text-black lg:text-white">LOGIN</Link></li>
     </>
     return (
         <div className="navbar z-10 max-w-7xl mx-auto bg-opacity-60 bg-black text-white fixed">
