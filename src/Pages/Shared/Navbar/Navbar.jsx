@@ -6,11 +6,11 @@ const Navbar = () => {
         <li><Link to='/menu' className="font-bold text-black lg:text-white">OUR MENU</Link></li>
         <li><a className="font-bold text-black lg:text-white">DASHBOARD</a></li>
         <li><a className="font-bold text-black lg:text-white">CONTACT US</a></li>
-        <li><a className="font-bold text-black lg:text-white">OUR SHOP</a></li>
+        <li><Link to='/ourShop/salad' className="font-bold text-black lg:text-white">OUR SHOP</Link></li>
         <li><a className="font-bold text-black lg:text-white">SIGN OUT</a></li>
     </>
     return (
-        <div className="navbar fixed z-10 container mx-auto bg-opacity-60 bg-black text-white">
+        <div className="navbar z-10 max-w-7xl mx-auto bg-opacity-60 bg-black text-white fixed">
             <div className="w-[30%]">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

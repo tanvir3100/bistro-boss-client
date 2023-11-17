@@ -3,12 +3,11 @@ const useMenu = () => {
     const [menus, setMenus] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('menu.json')
+        fetch('http://localhost:3100/menu')
             .then(res => res.json())
             .then(data => {
                 setMenus(data)
-                setLoading(false)
-                
+                setLoading(false)  
             })
     }, [])
     return [menus, loading]
