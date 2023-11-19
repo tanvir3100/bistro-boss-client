@@ -13,7 +13,7 @@ const Register = () => {
     return (
         <div className="w-full h-[100vh] flex justify-center items-center" style={{ background: `url(${background})` }}>
             <div className=" w-4/5 h-3/4 shadow-2xl" style={{ background: `url(${background})` }}>
-                <div className="hero-content flex-col lg:flex-row">
+                <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <img className='w-[80%]' src={loginImage} alt="" />
                     </div>
