@@ -1,13 +1,15 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { useState } from "react";
 import background from '../../assets/others/authentication.png'
 import loginImage from '../../assets/others/authentication2.png'
 import { useEffect } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 
 const Login = () => {
     const captchaRef = useRef()
     const [disable, setDisable] = useState(true)
+    const { signInUser } = useContext(AuthContext)
 
     const handleLogin = e => {
         e.preventDefault()
@@ -15,6 +17,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+
+        signInUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+
+            })
+            .then(error => {
+                console.error(error)
+            })
     }
 
     const handleValidateCaptcha = () => {
