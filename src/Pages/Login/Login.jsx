@@ -1,15 +1,22 @@
-import { useContext, useRef } from 'react'
+import { useContext } from 'react'
 import { useState } from "react";
 import background from '../../assets/others/authentication.png'
 import loginImage from '../../assets/others/authentication2.png'
 import { useEffect } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import HelmetSection from '../../Hooks/Helmet/HelmetSection';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const captchaRef = useRef()
     const [disable, setDisable] = useState(true)
-    const { signInUser } = useContext(AuthContext)
+    const { signInUser, googleUser } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = e => {
         e.preventDefault()
@@ -22,15 +29,30 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-
+                toast('Log In Successfully Done')
+                navigate(from, { replace: true });
             })
             .then(error => {
                 console.error(error)
             })
     }
 
-    const handleValidateCaptcha = () => {
-        const user_captcha_value = captchaRef.current.value;
+    const handleGoogle = () => {
+        googleUser()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                navigate(from, { replace: true });
+            })
+            .then(error => {
+                console.error(error)
+            })
+    }
+
+
+
+    const handleValidateCaptcha = (e) => {
+        const user_captcha_value = e.target.value;
         if (validateCaptcha(user_captcha_value)) {
             setDisable(false)
         }
@@ -42,8 +64,10 @@ const Login = () => {
         loadCaptchaEnginge(6);
     }, [])
     return (
-        <div className="w-full h-[100vh] flex justify-center items-center" style={{ background: `url(${background})` }}>
-            <div className=" w-4/5 h-5/6 shadow-2xl" style={{ background: `url(${background})` }}>
+        <div className="w-full min-h-screen flex justify-center items-center" style={{ background: `url(${background})` }}>
+            <HelmetSection
+                title={'bistro | Log In'} />
+            <div className=" w-[80%] h-[80%] shadow-2xl mb-10 mt-10" style={{ background: `url(${background})` }}>
                 <div className="hero-content flex-col lg:flex-row p-0">
                     <div className="text-center lg:text-left">
                         <img src={loginImage} alt="" />
@@ -70,18 +94,20 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input type="text" ref={captchaRef} name='text' placeholder="type the captcha" className="input input-bordered" required />
-                                <div className='mt-2 w-full'>
-                                    <button onClick={handleValidateCaptcha} className='btn btn-outline btn-sm w-full'>Validate</button>
-                                </div>
+                                <input onBlur={handleValidateCaptcha} type="text" name='captcha' placeholder="type the captcha" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <input disabled={disable} className='btn bg-[#D1A054B3] text-white' type="submit" value="Login" />
                             </div>
+                            <div className="form-control">
+                                <button onClick={handleGoogle} className='btn btn-outline'>Login with google</button>
+                            </div>
                         </form>
+                        <p className='text-center mb-5'>Have no Account ? <Link to='/register'><span className='hover:text-red-700 hover:underline'>Sign Up</span></Link></p>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

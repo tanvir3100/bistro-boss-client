@@ -8,6 +8,9 @@ import OurShop from "../Pages/OurShop/OurShop";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Login from '../Pages/Login/Login'
 import Register from '../Pages/Register/Register'
+import DashBoard from "../Pages/DashBoard/DashBoard";
+import PrivateRoute from "./PrivateRoute";
+
 
 
 
@@ -32,6 +35,10 @@ const router = createBrowserRouter([
                 path: '/contactUs',
                 element: <ContactUs />
             },
+            {
+                path: '/dashBoard',
+                element: <PrivateRoute><DashBoard /></PrivateRoute>
+            }
         ]
     },
     {

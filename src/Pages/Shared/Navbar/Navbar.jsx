@@ -3,23 +3,28 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider/AuthProvider';
 
 const Navbar = () => {
+
+
+    const { logOut, user } = useContext(AuthContext)
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .then()
+    }
     const navOption = <>
         <li><Link to='/' className="font-bold text-black lg:text-white">HOME</Link></li>
         <li><Link to='/menu' className="font-bold text-black lg:text-white">OUR MENU</Link></li>
-        <li><a className="font-bold text-black lg:text-white">DASHBOARD</a></li>
+        <li><Link to='/dashBoard' className="font-bold text-black lg:text-white">DASHBOARD</Link></li>
         <li><Link to='/contactUs' className="font-bold text-black lg:text-white">CONTACT US</Link></li>
         <li><Link to='/ourShop/salad' className="font-bold text-black lg:text-white">OUR SHOP</Link></li>
-        <li><Link to='/login' className="font-bold text-black lg:text-white">LOGIN</Link></li>
+        {
+            user ? <li><a onClick={handleLogOut} className="font-bold text-black lg:text-white">LOGOUT</a></li> :
+                <li><Link to='/login' className="font-bold text-black lg:text-white">LOGIN</Link></li>
+
+        }
     </>
 
 
-    const { logOut } = useContext(AuthContext)
-
-    const handleLogOut = () => {
-        logOut()
-        .then()
-        .then()
-    }
 
     return (
         <div className="navbar z-10 max-w-7xl mx-auto bg-opacity-60 bg-black text-white fixed">
@@ -41,7 +46,9 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            {
+                                user?.photoURL ? <img src={user.photoURL} /> : <img src="https://i.ibb.co/BqwpN6t/profile.png" />
+                            }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -52,6 +59,7 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><a className="text-black">Settings</a></li>
+                        <li><Link to='/register' className="text-black">Sign In</Link></li>
                         <li><a onClick={handleLogOut} className="text-black">Logout</a></li>
                     </ul>
                 </div>
