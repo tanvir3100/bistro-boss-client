@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider/AuthProvider';
 import { LuShoppingCart } from 'react-icons/lu';
+import useCart from '../../../Hooks/useCart';
 
 
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
+    const [cart] = useCart();
 
     const handleToggle = (e) => {
         if (e.target.checked) {
@@ -31,16 +33,14 @@ const Navbar = () => {
     const navOption = <>
         <li><Link to='/' className="font-bold text-black lg:text-white">HOME</Link></li>
         <li><Link to='/menu' className="font-bold text-black lg:text-white">OUR MENU</Link></li>
-        <li><Link to='/dashBoard' className="font-bold text-black lg:text-white">DASHBOARD</Link></li>
+        {/* <li><Link to='/dashBoard' className="font-bold text-black lg:text-white">DASHBOARD</Link></li> */}
         <li><Link to='/contactUs' className="font-bold text-black lg:text-white">CONTACT US</Link></li>
         <li><Link to='/ourShop/salad' className="font-bold text-black lg:text-white">OUR SHOP</Link></li>
-        <li><Link to=''>
-            <div className='w-full h-full flex items-center justify-center'>
-                <a className='btn btn-sm'>
-                    <LuShoppingCart />
-                    <div>+0</div>
-                </a>
-            </div>
+        <li><Link to='/dashboard/cart'>
+            <a className='btn btn-sm'>
+                <LuShoppingCart />
+                <div>+{cart.length}</div>
+            </a>
         </Link></li>
         {
             user ? <li><a onClick={handleLogOut} className="font-bold text-black lg:text-white">LOGOUT</a></li> :
@@ -69,7 +69,7 @@ const Navbar = () => {
                 </label>
             </div>
             <div className="navbar-end w-full hidden lg:flex items-center">
-                <ul className="menu menu-horizontal px-1 gap-2">
+                <ul className="menu menu-horizontal px-1 gap-2 flex justify-center items-center">
                     {navOption}
                 </ul>
                 <div className="dropdown dropdown-end">

@@ -7,8 +7,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import HelmetSection from '../../Hooks/Helmet/HelmetSection';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2'
 
 const Login = () => {
     const [disable, setDisable] = useState(true)
@@ -17,6 +16,7 @@ const Login = () => {
     const location = useLocation()
 
     const from = location.state?.from?.pathname || '/';
+    console.log('location form state', location.state)
 
     const handleLogin = e => {
         e.preventDefault()
@@ -29,7 +29,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                toast('Log In Successfully Done')
+                Swal.fire("SweetAlert2 is working!");
                 navigate(from, { replace: true });
             })
             .then(error => {
@@ -107,7 +107,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
+
         </div>
     );
 };
