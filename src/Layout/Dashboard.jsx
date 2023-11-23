@@ -3,9 +3,11 @@ import { LuShoppingCart } from 'react-icons/lu';
 import { IoReorderThree } from 'react-icons/io5';
 import { IoIosMailUnread } from 'react-icons/io';
 import { FaHome, FaCalendarAlt, FaWallet, FaCalendarDay, FaShoppingBag } from 'react-icons/fa';
+import useCart from "../Hooks/useCart";
 
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
 
         <div className="flex max-w-7xl mx-auto min-h-screen">
@@ -33,7 +35,7 @@ const Dashboard = () => {
                     <li>
                         <NavLink to='/dashboard/cart'>
                             <LuShoppingCart className="text-2xl" />
-                            My Cart
+                            My Cart [{cart.length}]
                         </NavLink>
                     </li>
                     <li>
@@ -77,7 +79,7 @@ const Dashboard = () => {
             </div>
             {/* dashboard contain */}
             <div className="flex-1">
-                <div className="w-4/5 mx-auto">
+                <div className="w-4/5 mx-auto mb-10">
                     <Outlet />
                 </div>
             </div>
