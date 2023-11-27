@@ -8,9 +8,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const {
         register,
         handleSubmit,
@@ -28,10 +30,19 @@ const Register = () => {
                 console.log(user)
                 updateProfileUser(data.name, data.photoURL)
                     .then(() => {
-                        console.log('profile updated')
-                        reset()
-                        toast('Sign Up Successfully Done')
-                        navigate('/')
+                        //create user entry in the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset()
+                                    toast('Sign Up Successfully Done')
+                                    navigate('/')
+                                }
+                            })
                     })
                     .catch(error => {
                         console.log(error)

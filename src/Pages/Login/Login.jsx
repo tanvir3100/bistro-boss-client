@@ -100,7 +100,7 @@ const Login = () => {
                                 <input disabled={disable} className='btn bg-[#D1A054B3] text-white' type="submit" value="Login" />
                             </div>
                             <div className="form-control">
-                                <button onClick={handleGoogle} className='btn btn-outline'>Login with google</button>
+                                <button onClick={handleGoogle} className='btn btn-outline hover:bg-gradient-to-r from-green-100 to-green-500 hover:border-none'>Login with google</button>
                             </div>
                         </form>
                         <p className='text-center mb-5'>Have no Account ? <Link to='/register'><span className='hover:text-red-700 hover:underline'>Sign Up</span></Link></p>
