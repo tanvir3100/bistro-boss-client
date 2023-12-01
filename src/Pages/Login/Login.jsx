@@ -8,10 +8,11 @@ import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import HelmetSection from '../../Hooks/Helmet/HelmetSection';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const [disable, setDisable] = useState(true)
-    const { signInUser, googleUser } = useContext(AuthContext);
+    const { signInUser } = useContext(AuthContext);
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -37,17 +38,6 @@ const Login = () => {
             })
     }
 
-    const handleGoogle = () => {
-        googleUser()
-            .then(result => {
-                const user = result.user;
-                console.log(user)
-                navigate(from, { replace: true });
-            })
-            .then(error => {
-                console.error(error)
-            })
-    }
 
 
 
@@ -100,7 +90,7 @@ const Login = () => {
                                 <input disabled={disable} className='btn bg-[#D1A054B3] text-white' type="submit" value="Login" />
                             </div>
                             <div className="form-control">
-                                <button onClick={handleGoogle} className='btn btn-outline hover:bg-gradient-to-r from-green-100 to-green-500 hover:border-none'>Login with google</button>
+                                <SocialLogin />
                             </div>
                         </form>
                         <p className='text-center mb-5'>Have no Account ? <Link to='/register'><span className='hover:text-red-700 hover:underline'>Sign Up</span></Link></p>

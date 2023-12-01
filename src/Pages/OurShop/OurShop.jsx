@@ -21,9 +21,9 @@ const OurShop = () => {
     return (
         <div>
             <div>
-            <Helmet>
-                <title>Bistro | Our Shop</title>
-            </Helmet>
+                <Helmet>
+                    <title>Bistro | Our Shop</title>
+                </Helmet>
                 <Cover
                     img={'https://i.ibb.co/xq2GcQt/banner2.jpg'}
                     headerText={'OUR SHOP'}
