@@ -1,5 +1,5 @@
 import SectionTitle from "../../../Components/SectionTital/SectionTitle";
-import useAxios from "../../../Hooks/useAxios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useCart from "../../../Hooks/useCart";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from 'sweetalert2'
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 const Cart = () => {
     const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-    const axiosSecure = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     const handleDelete = id => {
         Swal.fire({

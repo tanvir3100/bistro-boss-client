@@ -3,7 +3,7 @@ const useMenu = () => {
     const [menus, setMenus] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('http://localhost:3100/menu')
+        fetch('https://adopt-joy-hub-server-site.vercel.app/menu')
             .then(res => res.json())
             .then(data => {
                 setMenus(data)

@@ -1,10 +1,10 @@
-import axios from 'axios'
+// import axios from 'axios'
 
-export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3100'
-})
-const useAxios = () => {
-    return axiosSecure
-};
+// export const axiosSecure = axios.create({
+//     baseURL: 'https://adopt-joy-hub-server-site.vercel.app'
+// })
+// const useAxios = () => {
+//     return axiosSecure
+// };
 
-export default useAxios;
+// export default useAxios;

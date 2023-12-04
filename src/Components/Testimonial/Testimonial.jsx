@@ -13,7 +13,7 @@ import iconI from '../../assets/icon/108-1081966_design-inverted-comma-png-remov
 const Testimonial = () => {
     const [reviews, setReviews] = useState();
     useEffect(() => {
-        fetch('http://localhost:3100/reviews')
+        fetch('https://adopt-joy-hub-server-site.vercel.app/reviews')
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
