@@ -5,7 +5,7 @@ import SectionTitle from "../SectionTital/SectionTitle";
 const Recommends = () => {
     const [salad, setSalad] = useState([])
     useEffect(() => {
-        fetch('https://adopt-joy-hub-server-site.vercel.app/menu')
+        fetch('http://localhost:3100/menu')
             .then(res => res.json())
             .then(data => {
                 const salads = data.filter(salad => salad.category === 'salad')

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosPublic = axios.create({
-    baseURL: 'https://adopt-joy-hub-server-site.vercel.app'
+    baseURL: 'http://localhost:3100'
 })
 
 const useAxiosPublic = () => {

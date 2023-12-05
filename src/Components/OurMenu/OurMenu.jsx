@@ -10,7 +10,7 @@ const OurMenu = () => {
 
     // const [menus, setMenus] = useState()
     // useEffect(() => {
-    //     fetch('https://adopt-joy-hub-server-site.vercel.app/menu')
+    //     fetch('http://localhost:3100/menu')
     //         .then(res => res.json())
     //         .then(data => {
     //             const popularItems = data.filter(menu => menu.category === 'popular')
