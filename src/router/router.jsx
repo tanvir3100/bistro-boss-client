@@ -11,6 +11,7 @@ import Register from '../Pages/Register/Register'
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/DashBoard/Cart/Cart";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
+import Profile from "../Pages/Profile/Profile";
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: '/contactUs',
                 element: <ContactUs />
+            },
+            {
+                path: '/profile',
+                element: <Profile/>
             }
         ]
     },

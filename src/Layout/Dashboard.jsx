@@ -6,13 +6,14 @@ import { ImSpoonKnife } from "react-icons/im";
 import { FaBook, FaList, FaUser } from "react-icons/fa";
 import { FaHome, FaCalendarAlt, FaWallet, FaCalendarDay, FaShoppingBag } from 'react-icons/fa';
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
 
     //TODO: get isAdmin value from the database
-    const insAdmin = true;
+    const [insAdmin] = useAdmin();
 
     return (
         <div className="flex max-w-7xl mx-auto min-h-screen">

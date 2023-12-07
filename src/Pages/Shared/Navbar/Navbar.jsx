@@ -82,10 +82,10 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a className="justify-between text-black">
+                            <Link to='/profile' className="justify-between text-black">
                                 Profile
                                 <span className="badge text-black">New</span>
-                            </a>
+                            </Link>
                         </li>
                         <li><a className="text-black">Settings</a></li>
                         <li><Link to='/register' className="text-black">Sign In</Link></li>

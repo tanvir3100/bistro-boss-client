@@ -7,6 +7,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
+    // request interceptor to add authorization header for every call to the api
     const axiosSecure = useAxiosSecure();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -15,6 +16,7 @@ const AllUsers = () => {
             return res.data;
         }
     });
+
     const handleDeleteUser = user => {
         Swal.fire({
             title: "Are you sure?",
@@ -42,7 +44,8 @@ const AllUsers = () => {
     }
 
     const handleMakeAdmin = user => {
-        axiosSecure.patch(`users/admin/${user._id}`)
+        console.log(user)
+        axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
                 console.log(res.data)
                 if (res.data.modifiedCount > 0) {
@@ -90,11 +93,10 @@ const AllUsers = () => {
                                     <td>{user.email}</td>
                                     <td>
                                         {
-                                            users.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn bg-orange-500 text-white">
+                                            user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn bg-orange-500 text-white">
                                                 <FaUsers />
                                             </button>
                                         }
-
                                     </td>
                                     <td>
                                         <button>
