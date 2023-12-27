@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
             }
         ]
     },
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
             // admin router 
             {
                 path: 'addItems',
-                element: <AddItems />
+                element: <AdminRoute><AddItems /></AdminRoute>
             },
             {
                 path: 'users',
