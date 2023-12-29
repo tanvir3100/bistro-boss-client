@@ -4,36 +4,14 @@ import useMenu from "../../../Hooks/useMenu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const ManageItems = () => {
     const [menu] = useMenu();
     const axiosSecure = useAxiosSecure();
 
-    const handleDeleteItem = (item) => {
-        console.log(item._id)
-        // Swal.fire({
-        //     title: "Are you sure?",
-        //     text: "You won't be able to revert this!",
-        //     icon: "warning",
-        //     showCancelButton: true,
-        //     confirmButtonColor: "#3085d6",
-        //     cancelButtonColor: "#d33",
-        //     confirmButtonText: "Yes, delete it!"
-        // }).then(async (result) => {
-        //     if (result.isConfirmed) {
-        //         const res = await axiosSecure.delete(`/menu/${item._id}`)
-        //         console.log(res.data)
-
-        //         // if (res.data.deletedCount > 0) {
-        //         //     Swal.fire({
-        //         //         title: "Deleted!",
-        //         //         text: `has been deleted.`,
-        //         //         icon: "success"
-        //         //     });
-        //         // }
-        //     }
-        // });
+    const handleDeleteItem = async (item) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -46,11 +24,13 @@ const ManageItems = () => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/menu/${item._id}`)
                 console.log(res.data)
-                // Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success"
-                // });
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: `has been deleted.`,
+                        icon: "success"
+                    });
+                }
             }
         });
     }
@@ -82,19 +62,21 @@ const ManageItems = () => {
                             <tbody>
                                 {/* row 1 */}
                                 {
-                                    menu?.map((user, index) => <tr key={user}>
+                                    menu?.map((menuItem, index) => <tr key={menuItem}>
                                         <th>{index + 1}</th>
-                                        <td><img className="w-20 rounded-lg" src={user.image} alt="" /></td>
-                                        <td>{user.name}</td>
-                                        <td>{user.category}</td>
+                                        <td><img className="w-20 rounded-lg" src={menuItem.image} alt="" /></td>
+                                        <td>{menuItem.name}</td>
+                                        <td>{menuItem.category}</td>
                                         <td>
-                                            <button onClick={() => handleUpdate(item)} className="btn bg-orange-500 text-white">
-                                                <FaEdit />
-                                            </button>
+                                            <Link to={`/dashboard/updateItem/${menuItem._id}`}>
+                                                <button className="btn bg-orange-500 text-white">
+                                                    <FaEdit />
+                                                </button>
+                                            </Link>
                                         </td>
                                         <td>
                                             <button>
-                                                <button onClick={() => handleDeleteItem(user)} className="btn bg-[#B91C1C] w-10 h-10 flex items-center justify-center btn-xs"><RiDeleteBinLine
+                                                <button onClick={() => handleDeleteItem(menuItem)} className="btn bg-[#B91C1C] w-10 h-10 flex items-center justify-center btn-xs"><RiDeleteBinLine
                                                     className="text-2xl text-white" /></button>
                                             </button>
                                         </td>

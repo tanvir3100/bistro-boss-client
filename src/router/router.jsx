@@ -16,6 +16,7 @@ import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import AddItems from "../Pages/DashBoard/AddItems/AddItems";
 import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems";
+import UpdateItem from "../Pages/DashBoard/UpdateItem/UpdateItem";
 
 
 
@@ -66,7 +67,6 @@ const router = createBrowserRouter([
                 path: 'cart',
                 element: <PrivateRoute><Cart /></PrivateRoute>
             },
-
             // admin router 
             {
                 path: 'addItems',
@@ -79,6 +79,12 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <AdminRoute><AllUsers /></AdminRoute>
+            },
+            {
+                path: 'updateItem/:id',
+                element: <AdminRoute><UpdateItem /></AdminRoute>,
+                // loader: ({params}) => fetch(`http://localhost:3100/menu/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3100/menu/${params}`)
             },
         ]
     }
