@@ -17,6 +17,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddItems from "../Pages/DashBoard/AddItems/AddItems";
 import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems";
 import UpdateItem from "../Pages/DashBoard/UpdateItem/UpdateItem";
+import Payment from "../Pages/DashBoard/Payment/Payment";
 
 
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <PrivateRoute><Cart /></PrivateRoute>
+            },
+            {
+                path: 'payment',
+                element: <PrivateRoute><Payment /></PrivateRoute>
             },
             // admin router 
             {
